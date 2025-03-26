@@ -5,7 +5,7 @@
 import pytest
 from selene import browser, have
 
-@pytest.fixture(params=[(1920, 1080), (1030, 900)], ids=["1920x1080", "1030x900"])
+@pytest.fixture(params=[(1920, 1080), (1030, 900)], ids=lambda p: f"{p[0]}x{p[1]}")
 def desktop_browser(request):
     width, height = request.param
     browser.config.window_width = width
@@ -13,7 +13,7 @@ def desktop_browser(request):
     yield
     browser.quit()
 
-@pytest.fixture(params=[(430, 932), (1010, 1300)], ids=["430x932", "1010x1300"])
+@pytest.fixture(params=[(430, 932), (1010, 1300)], ids=lambda p: f"{p[0]}x{p[1]}")
 def mobile_browser(request):
     width, height = request.param
     browser.config.window_width = width

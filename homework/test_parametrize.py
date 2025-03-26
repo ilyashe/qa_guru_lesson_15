@@ -14,13 +14,13 @@ def setup_browser(request):
     browser.quit()
 
 
-@pytest.mark.parametrize("setup_browser", [(1920, 1080)], indirect=True, ids=["1920x1080"])
+@pytest.mark.parametrize("setup_browser", [(1920, 1080)], indirect=True, ids=lambda p: f"{p[0]}x{p[1]}")
 def test_github_desktop(setup_browser):
     browser.open("https://github.com/")
     browser.all('button').element_by(have.text('Sign up')).click()
 
 
-@pytest.mark.parametrize("setup_browser", [(430, 932)], indirect=True, ids=["430x932"])
+@pytest.mark.parametrize("setup_browser", [(430, 932)], indirect=True, ids=lambda p: f"{p[0]}x{p[1]}")
 def test_github_mobile(setup_browser):
     browser.open("https://github.com/")
     browser.element('.Button-content').click()
